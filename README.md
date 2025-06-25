@@ -1,8 +1,6 @@
-# **BookingBot NG** 🇳🇬
+# **BookingBot NG**
 *Configurable Appointment System for Nigerian Businesses*
 
-![Workflow](https://i.imgur.com/JkQ2XzH.gif)
-*(Example: Salon owner configuring services)*
 
 ---
 
@@ -240,7 +238,7 @@ For support, inquiries, or partnership opportunities, please reach out to our de
 
 **Nigerian Support Team**:
 - 📞 +234 800 BOOKBOT (Toll-free within Nigeria)
-- 📧 support@bookingbot.ng
+- 📧 support@agmtechpluse.net
 - *Available 8am-6pm WAT, Monday - Friday*
 
 ---
