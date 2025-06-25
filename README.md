@@ -13,6 +13,22 @@
 
 ---
 
+## **🌐 Supported Business Types**
+
+BookingBot NG's configurable nature makes it suitable for a wide array of Nigerian businesses, each with potential special features:
+
+| Industry          | Special Features                               |
+|-------------------|------------------------------------------------|
+| **Healthcare**    | Emergency slots, Patient record integration |
+| **Automotive**    | Part availability check, VIN scanner, Mechanic assignment |
+| **Beauty**        | Stylist portfolios, Deposit collections, Before/After galleries |
+| **Religious**     | Group bookings for services/events, Recurring donations, Member management |
+| **Agriculture**   | Farm location mapping, Weather alerts for optimal scheduling, Resource allocation |
+| **Consulting**    | Consultant availability, Document sharing, Meeting room booking |
+| **Education**     | Tutor scheduling, Class bookings, Course material access |
+
+---
+
 ## **🛠️ Setup for Local Development**
 
 To get BookingBot NG running on your local machine, follow these steps:
@@ -106,21 +122,6 @@ PAYSTACK_SECRET_KEY=your_paystack_secret_key
 
 ---
 
-## **🌐 Supported Business Types**
-
-BookingBot NG's configurable nature makes it suitable for a wide array of Nigerian businesses, each with potential special features:
-
-| Industry          | Special Features                               |
-|-------------------|------------------------------------------------|
-| **Healthcare**    | Emergency slots, Patient record integration |
-| **Automotive**    | Part availability check, VIN scanner, Mechanic assignment |
-| **Beauty**        | Stylist portfolios, Deposit collections, Before/After galleries |
-| **Religious**     | Group bookings for services/events, Recurring donations, Member management |
-| **Agriculture**   | Farm location mapping, Weather alerts for optimal scheduling, Resource allocation |
-| **Consulting**    | Consultant availability, Document sharing, Meeting room booking |
-| **Education**     | Tutor scheduling, Class bookings, Course material access |
-
----
 
 ## **📈 Analytics Integration**
 
