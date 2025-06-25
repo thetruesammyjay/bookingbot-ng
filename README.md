@@ -19,7 +19,7 @@ To get BookingBot NG running on your local machine, follow these steps:
 
 1. **Clone with submodules**: Ensure you clone the repository including any potential submodules used for specific integrations or libraries.
    ```bash
-   git clone --recurse-submodules https://github.com/yourrepo/bookingbot-ng.git
+   git clone --recurse-submodules https://github.com/thetruesammyjay/bookingbot-ng.git
    cd bookingbot-ng
    ```
 
@@ -112,7 +112,7 @@ BookingBot NG's configurable nature makes it suitable for a wide array of Nigeri
 
 | Industry          | Special Features                               |
 |-------------------|------------------------------------------------|
-| **Healthcare**    | NHIS verification, Emergency slots, Patient record integration |
+| **Healthcare**    | Emergency slots, Patient record integration |
 | **Automotive**    | Part availability check, VIN scanner, Mechanic assignment |
 | **Beauty**        | Stylist portfolios, Deposit collections, Before/After galleries |
 | **Religious**     | Group bookings for services/events, Recurring donations, Member management |
@@ -165,64 +165,6 @@ Designed with a mobile-first approach to ensure seamless experience even in low-
 
 *USSD Shortcode Support Coming Soon (Example: `*347*5#` for quick bookings, enabling broader access)*
 
----
-
-## **🔗 Deployment Guide**
-
-For optimal performance and compliance for Nigerian businesses:
-
-### **For Nigerian Hosting:**
-
-1. **Recommended Providers**: Whogohost (local Nigerian provider), or AWS Lagos Region (`af-south-1`) for cloud-native deployments.
-
-2. **NGINX Configuration**: The `infrastructure/nginx/conf.d/tenant_template.conf` will be used to dynamically route requests based on tenant subdomains.
-
-```nginx
-# Example NGINX server block for tenant subdomain routing
-server {
-    listen 80;
-    listen [::]:80;
-    # Catch all subdomains ending with .bookingbot.ng
-    server_name ~^(?<tenant>.+)\.bookingbot\.ng$;
-
-    # Optional: Redirect HTTP to HTTPS in production
-    # return 301 https://$host$request_uri;
-
-    location / {
-        # Pass the request to the backend application,
-        # using the captured 'tenant' variable.
-        proxy_pass http://backend_app_service:8000/tenants/$tenant; # Assumes 'backend_app_service' is your backend service name in Docker Compose/Kubernetes
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # Serve static files for the admin portal and booking page directly
-    location /admin/ {
-        alias /path/to/frontend/admin-portal/build/; # Update with actual build path
-        try_files $uri $uri/ /admin/index.html;
-    }
-
-    location /static/ {
-        alias /path/to/backend/static/; # Update with actual static files path for backend assets
-    }
-
-    # Add SSL/TLS configuration here for HTTPS
-    # ...
-}
-
-# Default server block for the main bookingbot.ng (e.g., marketing site, main login)
-server {
-    listen 80 default_server;
-    server_name bookingbot.ng www.bookingbot.ng;
-
-    location / {
-        proxy_pass http://frontend_main_site:3000; # Or serve static files for marketing site
-        # ...
-    }
-}
-```
 
 ---
 
@@ -236,7 +178,7 @@ This project is licensed under the **AGPL-3.0**. This includes a specific requir
 
 For support, inquiries, or partnership opportunities, please reach out to our dedicated team:
 
-**Nigerian Support Team**:
+**Nigerian Support Team (AGM TECHPLUSE)**:
 - 📞 +234 800 BOOKBOT (Toll-free within Nigeria)
 - 📧 support@agmtechpluse.net
 - *Available 8am-6pm WAT, Monday - Friday*
