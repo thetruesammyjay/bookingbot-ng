@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation - {{ business_name }}</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        
+        .business-name {
+            color: {{ primary_color | default('#007bff') }};
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .confirmation-badge {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .booking-details {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid {{ primary_color | default('#007bff') }};
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #6c757d;
+            flex: 1;
+        }
+        
+        .detail-value {
+            flex: 2;
+            text-align: right;
+        }
+        
+        .booking-reference {
+            background-color: {{ primary_color | default('#007bff') }};
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .reference-number {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        
+        .instructions {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .instructions h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        
+        .contact-info {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .action-buttons {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 0 10px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: {{ primary_color | default('#007bff') }};
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .social-links {
+            margin: 15px 0;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: {{ primary_color | default('#007bff') }};
+            text-decoration: none;
+        }
+        
+        .nigerian-flag {
+            font-size: 18px;
+            margin: 0 5px;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .detail-row {
+                flex-direction: column;
+            }
+            
+            .detail-value {
+                text-align: left;
+                margin-top: 5px;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            {% if logo_url %}
+            <img src="{{ logo_url }}" alt="{{ business_name }}" class="logo">
+            {% endif %}
+            <h1 class="business-name">{{ business_name }}</h1>
+            {% if tagline %}
+            <p style="color: #6c757d; margin: 5px 0 0 0;">{{ tagline }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Confirmation Badge -->
+        <div style="text-align: center;">
+            <div class="confirmation-badge">
+                ✅ Booking Confirmed
+            </div>
+        </div>
+
+        <!-- Greeting -->
+        <h2 style="color: #28a745;">Hello {{ customer_name }}!</h2>
+        
+        <p>Thank you for booking with us. Your appointment has been confirmed and we're looking forward to serving you.</p>
+
+        <!-- Booking Reference -->
+        <div class="booking-reference">
+            <div>Your Booking Reference</div>
+            <div class="reference-number">{{ booking_reference }}</div>
+            <small>Please keep this reference number for your records</small>
+        </div>
+
+        <!-- Booking Details -->
+        <div class="booking-details">
+            <h3 style="margin-top: 0; color: {{ primary_color | default('#007bff') }};">Appointment Details</h3>
+            
+            <div class="detail-row">
+                <span class="detail-label">Service:</span>
+                <span class="detail-value">{{ service_name }}</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Date:</span>
+                <span class="detail-value">{{ appointment_date }}</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Time:</span>
+                <span class="detail-value">{{ appointment_time }} (WAT)</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Duration:</span>
+                <span class="detail-value">{{ duration }}</span>
+            </div>
+            
+            {% if staff_name %}
+            <div class="detail-row">
+                <span class="detail-label">Staff Member:</span>
+                <span class="detail-value">{{ staff_name }}</span>
+            </div>
+            {% endif %}
+            
+            {% if payment_amount %}
+            <div class="detail-row">
+                <span class="detail-label">Amount:</span>
+                <span class="detail-value">₦{{ payment_amount }}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Special Requests -->
+        {% if special_requests %}
+        <div style="margin: 20px 0;">
+            <h4>Special Requests:</h4>
+            <p style="font-style: italic; color: #6c757d;">{{ special_requests }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Instructions -->
+        {% if booking_instructions %}
+        <div class="instructions">
+            <h3>📋 Important Instructions</h3>
+            <div>{{ booking_instructions | safe }}</div>
+        </div>
+        {% endif %}
+
+        <!-- Default Instructions for Nigerian Context -->
+        <div class="instructions">
+            <h3>📋 What to Expect</h3>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>Please arrive 10 minutes before your scheduled time</li>
+                <li>Bring a valid ID (National ID, Driver's License, or International Passport)</li>
+                <li>If paying by card, ensure your account has sufficient funds</li>
+                <li>For bank transfers, use the reference number: <strong>{{ booking_reference }}</strong></li>
+                <li>Contact us immediately if you need to reschedule or cancel</li>
+            </ul>
+        </div>
+
+        <!-- Location Information -->
+        <div class="contact-info">
+            <h3 style="margin-top: 0;">📍 Location & Contact</h3>
+            <p><strong>Address:</strong><br>
+            {{ business_address.street_address }}<br>
+            {{ business_address.city }}, {{ business_address.state }} State<br>
+            Nigeria</p>
+            
+            <p><strong>Phone:</strong> {{ business_phone }}</p>
+            <p><strong>Email:</strong> {{ business_email }}</p>
+            
+            {% if business_address.directions %}
+            <p><strong>Directions:</strong> {{ business_address.directions }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="{{ booking_details_url }}" class="btn btn-primary">View Booking Details</a>
+            {% if calendar_link %}
+            <a href="{{ calendar_link }}" class="btn btn-secondary">Add to Calendar</a>
+            {% endif %}
+        </div>
+
+        <!-- Payment Information -->
+        {% if payment_required and payment_status == 'pending' %}
+        <div style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #856404; margin-top: 0;">💳 Payment Required</h3>
+            <p>Your booking requires payment of <strong>₦{{ payment_amount }}</strong></p>
+            <p>Payment methods accepted:</p>
+            <ul>
+                <li>💳 Card payment (Visa, Mastercard, Verve)</li>
+                <li>🏦 Bank transfer (GTBank, Access Bank, UBA, etc.)</li>
+                <li>💰 Cash payment on arrival</li>
+                <li>📱 USSD payment</li>
+            </ul>
+            {% if payment_link %}
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="{{ payment_link }}" class="btn btn-primary">Pay Now</a>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <!-- Cancellation Policy -->
+        <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0; font-size: 14px;">
+            <h4>📝 Cancellation Policy</h4>
+            <p>{{ cancellation_policy | default('Free cancellation up to 2 hours before your appointment. Late cancellations may incur charges.') }}</p>
+            
+            <p style="margin-top: 15px;">
+                <strong>Need to cancel or reschedule?</strong><br>
+                📞 Call: {{ business_phone }}<br>
+                📧 Email: {{ business_email }}<br>
+                💬 WhatsApp: {{ whatsapp_number | default(business_phone) }}
+            </p>
+        </div>
+
+        <!-- Nigerian Business Context -->
+        <div style="text-align: center; margin: 20px 0; color: #6c757d;">
+            <span class="nigerian-flag">🇳🇬</span>
+            <span>Proudly serving Nigeria with BookingBot NG</span>
+            <span class="nigerian-flag">🇳🇬</span>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>{{ business_name }}</strong></p>
+            
+            {% if social_links %}
+            <div class="social-links">
+                {% if social_links.facebook %}
+                <a href="{{ social_links.facebook }}">Facebook</a>
+                {% endif %}
+                {% if social_links.instagram %}
+                <a href="{{ social_links.instagram }}">Instagram</a>
+                {% endif %}
+                {% if social_links.twitter %}
+                <a href="{{ social_links.twitter }}">Twitter</a>
+                {% endif %}
+            </div>
+            {% endif %}
+            
+            <p style="margin: 15px 0;">
+                This email was sent regarding your booking at {{ business_name }}.<br>
+                If you have any questions, please contact us using the information above.
+            </p>
+            
+            <p style="font-size: 12px; color: #adb5bd;">
+                Powered by <strong>BookingBot NG</strong> - Nigeria's Leading Booking Platform<br>
+                © {{ current_year }} BookingBot NG. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
